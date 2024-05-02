@@ -1,0 +1,44 @@
+updates the wsl system: wsl.exe --update
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+Conda:
+https://gist.github.com/kauffmanes/5e74916617f9993bc3479f401dfec7da
+/home/<my_user_name>/anaconda3
+
+To enable conda on startup: conda config --set auto_activate_base false
+To revert it: conda init --reverse $SHELL
+
+To open jupyter, type $ jupyter notebook --no-browser
+
+Conda Envs:
+https://saturncloud.io/blog/updating-python-to-a-specific-version-using-conda-a-guide/
+To activate a conda environment, use
+#     $ conda activate audiocraftenv
+# To deactivate an active environment, use
+#     $ conda deactivate
+
+-----
+Audiocraft:
+# must have miniconda installed
+
+# installation for musicgen
+conda create -n audiocraft python=3.9
+conda activate audiocraft
+brew install ffmpeg (for mac)
+winget install ffmpeg (for windows)
+git clone https://github.com/facebookresearch/audiocraft.git
+cd audiocraft
+python -m pip install -r requirements.txt
+python -m demos.musicgen_app --share
+# first time you run inference, it'll download the model
+
+# installation for audiogen
+# NOTE: after already installing music gen
+# NOTE: after PR185 gets merged, you won't have to execute the next two commands
+git fetch origin pull/185/head:PR185
+git checkout PR185
+python -m demos.audiogen_app --share
+# first time you run inference, it'll download the model
+
